@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tyagi Travels | Premium Tour Packages & Fleet Rentals in Dhampur</title>
+  <meta name="description" content="Your Gateway to India, Your Companion to the Himalayas. Book custom tour packages and rent luxury buses, tempo travellers, SUVs or sedans in Dhampur, UP.">
+  
+  <!-- Font and Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+
+  <!-- Glowing Background Ambient Orbs -->
+  <div class="glow-container">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+  </div>
+
+  <!-- Main Header & Navigation -->
+  <header class="main-header" id="mainHeader">
+    <div class="container header-container">
+      <!-- Logo -->
+      <a href="#" class="brand-logo" id="headerLogo">
+        <img src="assets/logo.png" alt="Tyagi Travels Logo" style="height: 54px; width: auto; transition: transform var(--transition-speed);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      </a>
+
+      <!-- Navbar Links -->
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#" class="nav-link">Home</a></li>
+          <li><a href="#packages" class="nav-link">Tour Packages</a></li>
+          <li><a href="#fleet" class="nav-link">Our Fleet</a></li>
+          <li><a href="#why-us" class="nav-link">Why Choose Us</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="themeToggle" title="Toggle Light/Dark Mode">
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+        </button>
+        <!-- Get Quote CTA -->
+        <button class="btn btn-primary btn-sm" onclick="openQuoteModal()">Get a Quote</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <!-- Carousel Background -->
+    <div class="hero-bg-container">
+      <div class="hero-slide active" style="background-image: url('assets/hero_bg.png');"></div>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="container hero-container">
+      <!-- Hero Left Text Content -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i data-lucide="shield-check"></i>
+          Dhampur's Most Trusted Travel Companion
+        </div>
+        <h1 class="hero-title">
+          Your Gateway to India,<br>
+          Your Companion to the<br>
+          <span>Himalayas</span>.
+        </h1>
+        <p class="hero-subtitle">
+          Explore majestic Uttarakhand peaks, spiritual Char Dham shrines, and scenic destinations with Dhampur's premier luxury bus, tempo traveller, and premium car rental service. Safe mountain drivers, transparent pricing.
+        </p>
+        <div class="hero-actions">
+          <a href="#packages" class="btn btn-primary">
+            Explore Tour Packages
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="#fleet" class="btn btn-outline" style="margin-left: 16px;">
+            View Our Fleet
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Right Booking Widget -->
+      <div class="booking-widget-container">
+        <div class="booking-widget">
+          <!-- Widget tabs -->
+          <div class="booking-tabs">
+            <button class="tab-btn active" onclick="switchBookingTab(event, 'tour')">
+              <i data-lucide="compass"></i>
+              Book Tour
+            </button>
+            <button class="tab-btn" onclick="switchBookingTab(event, 'car')">
+              <i data-lucide="car"></i>
+              Rent Car/SUV
+            </button>
+            <button class="tab-btn" onclick="switchBookingTab(event, 'bus')">
+              <i data-lucide="bus"></i>
+              Book Bus/Tempo
+            </button>
+          </div>
+
+          <!-- Tab Content 1: Book Tour Package -->
+          <form class="booking-form" id="bookingFormTour" onsubmit="handleBookingSubmit(event, 'Tour')">
+            <div class="form-group">
+              <label for="tourPickup">Pickup Location</label>
+              <div class="input-container">
+                <i data-lucide="map-pin"></i>
+                <select id="tourPickup" class="form-select">
+                  <option value="Dhampur" selected>Dhampur (Office)</option>
+                  <option value="Bijnor">Bijnor</option>
+                  <option value="Haridwar">Haridwar</option>
+                  <option value="Dehradun">Dehradun</option>
+                  <option value="Delhi NCR">Delhi NCR</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="tourDest">Destination Package</label>
+              <div class="input-container">
+                <i data-lucide="compass"></i>
+                <select id="tourDest" class="form-select">
+                  <option value="Kedarnath & Badrinath">Char Dham: Kedarnath & Badrinath</option>
+                  <option value="Jim Corbett Wildlife">Jim Corbett Wildlife Safari</option>
+                  <option value="Rishikesh & Haridwar">Rishikesh Adventure & Yoga</option>
+                  <option value="Nainital Lakes">Nainital Lakes & Hills</option>
+                  <option value="Mussoorie Queen">Mussoorie (Queen of Hills)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="tourDate">Travel Date</label>
+              <div class="input-container">
+                <i data-lucide="calendar"></i>
+                <input type="date" id="tourDate" class="form-input" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary booking-submit-btn">
+              Search Packages
+              <i data-lucide="search"></i>
+            </button>
+          </form>
+
+          <!-- Tab Content 2: Rent Car/SUV (Hidden by default) -->
+          <form class="booking-form" id="bookingFormCar" style="display: none;" onsubmit="handleBookingSubmit(event, 'Car/SUV Rental')">
+            <div class="form-group">
+              <label for="carPickup">Pickup Location</label>
+              <div class="input-container">
+                <i data-lucide="map-pin"></i>
+                <select id="carPickup" class="form-select">
+                  <option value="Dhampur" selected>Dhampur (Office)</option>
+                  <option value="Bijnor">Bijnor</option>
+                  <option value="Haridwar">Haridwar</option>
+                  <option value="Dehradun">Dehradun</option>
+                  <option value="Delhi NCR">Delhi NCR</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="carDest">Destination</label>
+              <div class="input-container">
+                <i data-lucide="map-pins"></i>
+                <input type="text" id="carDest" class="form-input" placeholder="Enter Destination City" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="carVehicle">Vehicle Category</label>
+              <div class="input-container">
+                <i data-lucide="car"></i>
+                <select id="carVehicle" class="form-select">
+                  <option value="Toyota Innova Crysta">Toyota Innova Crysta (Premium SUV)</option>
+                  <option value="Maruti Suzuki Ertiga">Maruti Suzuki Ertiga (Comfort SUV)</option>
+                  <option value="Swift Dzire / Sedan">Swift Dzire / Etios (Sedan)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="carDate">Rental Start Date</label>
+              <div class="input-container">
+                <i data-lucide="calendar"></i>
+                <input type="date" id="carDate" class="form-input" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary booking-submit-btn">
+              Rent Car & Get Price
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </form>
+
+          <!-- Tab Content 3: Book Bus/Tempo (Hidden by default) -->
+          <form class="booking-form" id="bookingFormBus" style="display: none;" onsubmit="handleBookingSubmit(event, 'Bus/Tempo booking')">
+            <div class="form-group">
+              <label for="busPickup">Pickup Location</label>
+              <div class="input-container">
+                <i data-lucide="map-pin"></i>
+                <select id="busPickup" class="form-select">
+                  <option value="Dhampur" selected>Dhampur (Office)</option>
+                  <option value="Bijnor">Bijnor</option>
+                  <option value="Haridwar">Haridwar</option>
+                  <option value="Dehradun">Dehradun</option>
+                  <option value="Delhi NCR">Delhi NCR</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="busDest">Destination</label>
+              <div class="input-container">
+                <i data-lucide="map-pins"></i>
+                <input type="text" id="busDest" class="form-input" placeholder="e.g. Kedarnath / Marriage Hall / Jaipur" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="busVehicle">Bus/Tempo Category</label>
+              <div class="input-container">
+                <i data-lucide="bus"></i>
+                <select id="busVehicle" class="form-select">
+                  <option value="Volvo AC Luxury Coach">Volvo AC Coach (45 Seater)</option>
+                  <option value="Maharaja Tempo Traveller">Tempo Traveller (17 Maharaja Seats)</option>
+                  <option value="Semi-Sleeper AC Bus">Semi-Sleeper AC Bus (35 Seater)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="busDate">Travel Date</label>
+              <div class="input-container">
+                <i data-lucide="calendar"></i>
+                <input type="date" id="busDate" class="form-input" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary booking-submit-btn">
+              Check Bus Availability
+              <i data-lucide="arrow-right-left"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialized Focus: Tour Packages -->
+  <section id="packages" class="section-padding">
+    <div class="container">
+      <div class="section-header-block">
+        <span class="section-subtitle">Spiritual & Himalayan Journeys</span>
+        <h2 class="section-title">Curated Tour Packages</h2>
+        <p class="section-desc">Handcrafted itineraries made to deliver comfort and spiritual peace. Travel in custom-fitted buses and SUVs with expert guides and skilled mountain drivers.</p>
+      </div>
+
+      <div class="packages-grid">
+        <!-- Card 1: Char Dham -->
+        <div class="package-card">
+          <div class="package-image-wrap">
+            <img src="assets/tour_kedarnath.png" alt="Kedarnath Temple" class="package-image">
+            <span class="package-tag">Spiritual Journey</span>
+            <span class="package-duration">5 Nights / 6 Days</span>
+          </div>
+          <div class="package-content">
+            <h3 class="package-title">Char Dham Special: Kedarnath & Badrinath</h3>
+            <div class="package-details-row">
+              <div class="package-detail-item">
+                <i data-lucide="user-check"></i>
+                <span>AC Transport</span>
+              </div>
+              <div class="package-detail-item">
+                <i data-lucide="hotel"></i>
+                <span>Star Hotels</span>
+              </div>
+            </div>
+            <ul class="package-highlights">
+              <li>Dhampur Pickup</li>
+              <li>VIP Temple Darshan</li>
+              <li>Mountain Driver</li>
+              <li>Guaranteed safety</li>
+            </ul>
+            <div class="package-footer">
+              <div class="package-price">
+                <span class="package-price-label">Starting From</span>
+                <div class="package-price-val">₹12,499</div>
+              </div>
+              <div class="package-actions">
+                <button class="btn btn-outline btn-sm" onclick="openItineraryModal('kedarnath')">Itinerary</button>
+                <button class="btn btn-primary btn-sm" onclick="bookPackage('Kedarnath & Badrinath')">Book Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Jim Corbett -->
+        <div class="package-card">
+          <div class="package-image-wrap">
+            <img src="assets/tour_corbett.png" alt="Jim Corbett National Park Safari" class="package-image">
+            <span class="package-tag">Wildlife Adventure</span>
+            <span class="package-duration">2 Nights / 3 Days</span>
+          </div>
+          <div class="package-content">
+            <h3 class="package-title">Weekend Gateway: Jim Corbett Safari & Nainital</h3>
+            <div class="package-details-row">
+              <div class="package-detail-item">
+                <i data-lucide="user-check"></i>
+                <span>Jeep Safari Included</span>
+              </div>
+              <div class="package-detail-item">
+                <i data-lucide="hotel"></i>
+                <span>Jungle Resort</span>
+              </div>
+            </div>
+            <ul class="package-highlights">
+              <li>4x4 Jungle Drive</li>
+              <li>Naini Lake Tour</li>
+              <li>All Meals Covered</li>
+              <li>Scenic Hill roads</li>
+            </ul>
+            <div class="package-footer">
+              <div class="package-price">
+                <span class="package-price-label">Starting From</span>
+                <div class="package-price-val">₹4,999</div>
+              </div>
+              <div class="package-actions">
+                <button class="btn btn-outline btn-sm" onclick="openItineraryModal('corbett')">Itinerary</button>
+                <button class="btn btn-primary btn-sm" onclick="bookPackage('Jim Corbett Wildlife')">Book Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Rishikesh & Haridwar -->
+        <div class="package-card">
+          <div class="package-image-wrap">
+            <img src="assets/tour_rishikesh.png" alt="Rafting in Rishikesh" class="package-image">
+            <span class="package-tag">Adventure & Yoga</span>
+            <span class="package-duration">3 Nights / 4 Days</span>
+          </div>
+          <div class="package-content">
+            <h3 class="package-title">Spiritual & Adventure: Rishikesh & Haridwar</h3>
+            <div class="package-details-row">
+              <div class="package-detail-item">
+                <i data-lucide="user-check"></i>
+                <span>Rafting & Yoga</span>
+              </div>
+              <div class="package-detail-item">
+                <i data-lucide="hotel"></i>
+                <span>Ganges View Stay</span>
+              </div>
+            </div>
+            <ul class="package-highlights">
+              <li>Ganga Aarti Pass</li>
+              <li>16km River Rafting</li>
+              <li>Yoga Session</li>
+              <li>Lakshman Jhula Visit</li>
+            </ul>
+            <div class="package-footer">
+              <div class="package-price">
+                <span class="package-price-label">Starting From</span>
+                <div class="package-price-val">₹6,999</div>
+              </div>
+              <div class="package-actions">
+                <button class="btn btn-outline btn-sm" onclick="openItineraryModal('rishikesh')">Itinerary</button>
+                <button class="btn btn-primary btn-sm" onclick="bookPackage('Rishikesh & Haridwar')">Book Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fleet Showcase -->
+  <section id="fleet" class="section-padding fleet-section">
+    <div class="container">
+      <div class="section-header-block">
+        <span class="section-subtitle">Pan-India Tourist Fleet</span>
+        <h2 class="section-title">Rent Luxury Buses & SUV Fleet</h2>
+        <p class="section-desc">Modern, well-maintained commercial vehicles with all-India permits. Perfect for large tour groups, family marriages, pilgrimage routes, or business charters.</p>
+      </div>
+
+      <div class="fleet-slider-container">
+        <div class="fleet-slider" id="fleetSlider">
+          <!-- Vehicle 1: Volvo Bus -->
+          <div class="fleet-card">
+            <div class="fleet-img-wrap">
+              <!-- Inline bus illustration -->
+              <svg viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="10" width="110" height="35" rx="5" fill="#3b82f6"/>
+                <rect x="5" y="20" width="110" height="8" fill="#1d4ed8"/>
+                <rect x="15" y="14" width="15" height="10" rx="1" fill="#f8fafc"/>
+                <rect x="35" y="14" width="15" height="10" rx="1" fill="#f8fafc"/>
+                <rect x="55" y="14" width="15" height="10" rx="1" fill="#f8fafc"/>
+                <rect x="75" y="14" width="15" height="10" rx="1" fill="#f8fafc"/>
+                <rect x="95" y="14" width="15" height="10" rx="1" fill="#f8fafc"/>
+                <circle cx="25" cy="50" r="10" fill="#0f172a"/>
+                <circle cx="25" cy="50" r="4" fill="#cbd5e1"/>
+                <circle cx="95" cy="50" r="10" fill="#0f172a"/>
+                <circle cx="95" cy="50" r="4" fill="#cbd5e1"/>
+                <path d="M5 25H25" stroke="#f97316" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="fleet-details">
+              <span class="fleet-category">Buses & Group Travel</span>
+              <h3 class="fleet-name">Volvo Luxury AC Coach</h3>
+              <div class="fleet-specs">
+                <div class="fleet-spec-item">
+                  <i data-lucide="wind"></i>
+                  <span>Full AC Cabin</span>
+                </div>
+                <div class="fleet-spec-item">
+                  <i data-lucide="armchair"></i>
+                  <span>Pushback Seats</span>
+                </div>
+                <div class="fleet-spec-item">
+                  <i data-lucide="luggage"></i>
+                  <span>Heavy Luggage Space</span>
+                </div>
+                <div class="fleet-spec-item">
+                  <i data-lucide="music"></i>
+                  <span>Stereo & LCD</span>
+                </div>
+              </div>
+              <div class="fleet-footer">
+                <span class="fleet-capacity-badge">45 Seats</span>
+                <button class="btn btn-primary btn-sm" onclick="openQuoteModal('Volvo Luxury AC Coach')">Get Quote</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vehicle 2: Maharaja Tempo Traveller -->
+          <div class="fleet-card">
+            <div class="fleet-img-wrap">
+              <!-- Inline tempo traveller illustration -->
+              <svg viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="15" y="12" width="90" height="32" rx="4" fill="#64748b"/>
+                <rect x="15" y="22" width="90" height="6" fill="#475569"/>
+                <rect x="23" y="16" width="12" height="10" rx="1" fill="#f8fafc"/>
+                <rect x="40" y="16" width="12" height="10" rx="1" fill="#f8fafc"/>
+                <rect x="57" y="16" width="12" height="10" rx="1" fill="#f8fafc"/>
+                <rect x="74" y="16" width="12" height="10" rx="1" fill="#f8fafc"/>
+                <circle cx="35" cy="48" r="8.5" fill="#0f172a"/>
+                <circle cx="35" cy="48" r="3.5" fill="#cbd5e1"/>
+                <circle cx="85" cy="48" r="8.5" fill="#0f172a"/>
+                <circle cx="85" cy="48" r="3.5" fill="#cbd5e1"/>
+                <path d="M15 28H35" stroke="#f97316" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="fleet-details">
+              <span class="fleet-category">Tempo Travellers</span>
+              <h3 class="fleet-name">Maharaja Tempo Traveller</h3>
+              <div class="fleet-specs">
+                <div class="fleet-spec-item">
+                  <i data-lucide="wind"></i>
+                  <span>Powerful AC</span>
+                </div>
+                <div class="fleet-spec-item">
+                  <i data-lucide="sparkles"></i>
+                  <span>Maharaja Seating</span>
+                </div>
+                <div class="fleet-spec-item">
+                  <i data-lucide="luggage"></i>
+                  <span>Rear Carrier Space</span>
+                </div>
+                <div class="fleet-spec-item">
+                  <i data-lucide="tv"></i>
+                  <span>Smart Screen</span>
+                </div>
+              </div>
+              <div class="fleet-footer">
+                <span class="fleet-capacity-badge">17 Seats</span>
+                <button class="btn btn-primary btn-sm" onclick="openQuoteModal('Maharaja Tempo Traveller')">Get Quote</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vehicle 3: Toyota Innova Crysta -->
+          <div class="fleet-card">
+            <div class="fleet-img-wrap">
+              <!-- SUV Illustration -->
+              <svg viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 28 L30 18 L80 18 L105 28 L110 38 L105 44 L15 44 Z" fill="#38bdf8"/>
+                <rect x="30" y="22" width="20" height="8" rx="1" fill="#f8fafc"/>
+                <rect x="55" y="22" width="20" height="8" rx="1" fill="#f8fafc"/>
+                <circle cx="35" cy="44" r="8" fill="#0f172a"/>
+                <circle cx="35" cy="44" r="3" fill="#cbd5e1"/>
+                <circle cx="85" cy="44" r="8" fill="#0f172a"/>
+                <circle cx="85" cy="44" r="3" fill="#cbd5e1"/>
+                <path d="M10 34 H35" stroke="#f97316" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="fleet-details">
+              <span class="fleet-category">Premium SUVs</span>
+              <h3 class="fleet-name">Toyota Innova Crysta</h3>
+              <div class="fleet-specs">
+                <div class="fleet-spec-item">
+                  <i data-lucide="wind"></i>
+                  <span>Dual Zone AC</span>
+                </div>
+                <div class="fleet-spec-item">
+                  <i data-lucide="award"></i>
+                  <span>Luxury Captain seats</span>
+                </div>
+                <div class="fleet-spec-item">
+                  <i data-lucide="mountain"></i>
+                  <span>Smooth Mountain Ride</span>
+                </div>
+                <div class="fleet-spec-item">
+                  <i data-lucide="shield"></i>
+                  <span>ABS & Airbags</span>
+                </div>
+              </div>
+              <div class="fleet-footer">
+                <span class="fleet-capacity-badge">7 Seats</span>
+                <button class="btn btn-primary btn-sm" onclick="openQuoteModal('Toyota Innova Crysta')">Get Quote</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vehicle 4: Swift Dzire / Sedan -->
+          <div class="fleet-card">
+            <div class="fleet-img-wrap">
+              <!-- Sedan Illustration -->
+              <svg viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 32 L35 24 L75 24 L95 32 L105 38 L100 42 L20 42 Z" fill="#cbd5e1"/>
+                <rect x="35" y="27" width="18" height="6" rx="1" fill="#f8fafc"/>
+                <rect x="58" y="27" width="18" height="6" rx="1" fill="#f8fafc"/>
+                <circle cx="35" cy="42" r="7" fill="#0f172a"/>
+                <circle cx="35" cy="42" r="2.5" fill="#ffffff"/>
+                <circle cx="80" cy="42" r="7" fill="#0f172a"/>
+                <circle cx="80" cy="42" r="2.5" fill="#ffffff"/>
+              </svg>
+            </div>
+            <div class="fleet-details">
+              <span class="fleet-category">Family Sedans</span>
+              <h3 class="fleet-name">Swift Dzire / Etios</h3>
+              <div class="fleet-specs">
+                <div class="fleet-spec-item">
+                  <i data-lucide="wind"></i>
+                  <span>AC Cabin</span>
+                </div>
+                <div class="fleet-spec-item">
+                  <i data-lucide="percent"></i>
+                  <span>Highly Economical</span>
+                </div>
+                <div class="fleet-spec-item">
+                  <i data-lucide="briefcase"></i>
+                  <span>Good Boot Space</span>
+                </div>
+                <div class="fleet-spec-item">
+                  <i data-lucide="user"></i>
+                  <span>Private Travel</span>
+                </div>
+              </div>
+              <div class="fleet-footer">
+                <span class="fleet-capacity-badge">4 Seats</span>
+                <button class="btn btn-primary btn-sm" onclick="openQuoteModal('Swift Dzire / Sedan')">Get Quote</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrows -->
+        <button class="slider-arrow" id="slideLeft" style="position: absolute; top: calc(50% - 22px); left: 10px; z-index: 12;" title="Slide Left">
+          <i data-lucide="chevron-left"></i>
+        </button>
+        <button class="slider-arrow" id="slideRight" style="position: absolute; top: calc(50% - 22px); right: 10px; z-index: 12;" title="Slide Right">
+          <i data-lucide="chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us? -->
+  <section id="why-us" class="section-padding why-section">
+    <div class="container">
+      <div class="section-header-block">
+        <span class="section-subtitle">Our Promise of Safety & Trust</span>
+        <h2 class="section-title">Why Choose Tyagi Travels?</h2>
+        <p class="section-desc">Providing transparent, high-quality touring services across Uttarakhand and Pan-India, from our headquarters in Dhampur.</p>
+      </div>
+
+      <div class="why-grid">
+        <!-- Card 1 -->
+        <div class="why-card">
+          <div class="why-icon-box">
+            <i data-lucide="map-pin"></i>
+          </div>
+          <h4>Based in Dhampur</h4>
+          <p>Rooted in Bijnor district, providing reliable local office support for corporate charters & family marriages.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="why-card">
+          <div class="why-icon-box">
+            <i data-lucide="shield-alert"></i>
+          </div>
+          <h4>Mountain Drivers</h4>
+          <p>Expert, licensed mountain drivers specialized in handling hairpin bends, snow, and rough hills safely.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="why-card">
+          <div class="why-icon-box">
+            <i data-lucide="wrench"></i>
+          </div>
+          <h4>24/7 Road Support</h4>
+          <p>Complete peace of mind. Round-the-clock emergency support line and standby backup vehicles.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="why-card">
+          <div class="why-icon-box">
+            <i data-lucide="coins"></i>
+          </div>
+          <h4>Transparent Pricing</h4>
+          <p>Strictly zero hidden charges. All permit fees, driver allowance, and toll costs fully detailed upfront.</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="why-card">
+          <div class="why-icon-box">
+            <i data-lucide="globe"></i>
+          </div>
+          <h4>All-India Permit</h4>
+          <p>State-of-the-art tourist permits across India, allowing seamless inter-state travel without boundary issues.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="main-footer">
+    <div class="container footer-grid">
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="Tyagi Travels Logo" style="height: 72px; width: auto; margin-bottom: 20px; transition: transform var(--transition-speed);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <p>Your gateway to India and trusted partner for spiritual Char Dham tours and luxury fleet rentals. Rooted in Dhampur, UP.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon" title="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" class="social-icon" title="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" class="social-icon" title="YouTube"><i data-lucide="youtube"></i></a>
+          <a href="#" class="social-icon" title="Twitter"><i data-lucide="twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#packages">Tour Packages</a></li>
+          <li><a href="#fleet">Our Fleet</a></li>
+          <li><a href="#why-us">Why Choose Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Tours -->
+      <div>
+        <h4 class="footer-heading">Char Dham Tours</h4>
+        <ul class="footer-links">
+          <li><a href="#packages" onclick="bookPackage('Kedarnath & Badrinath')">Kedarnath Darshan</a></li>
+          <li><a href="#packages" onclick="bookPackage('Kedarnath & Badrinath')">Badrinath Yatra</a></li>
+          <li><a href="#packages" onclick="bookPackage('Rishikesh & Haridwar')">Haridwar Ganga Aarti</a></li>
+          <li><a href="#packages" onclick="bookPackage('Jim Corbett Wildlife')">Jim Corbett Safari</a></li>
+        </ul>
+      </div>
+
+      <!-- Office Contact -->
+      <div>
+        <h4 class="footer-heading">Office & Contact</h4>
+        <ul class="footer-contact-info">
+          <li class="footer-contact-item">
+            <i data-lucide="phone"></i>
+            <span>+91 70557 88999<br>+91 99974 32556<br>+91 69093 70830<br>+91 70651 07966</span>
+          </li>
+          <li class="footer-contact-item">
+            <i data-lucide="mail"></i>
+            <span>tyagitravels2026@gmail.com</span>
+          </li>
+          <li class="footer-contact-item">
+            <i data-lucide="map-pin"></i>
+            <span>Lane no 3, Durga Vihar,<br>Dhampur, Bijnor(UP)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Tyagi Travels. All Rights Reserved.</p>
+      <p>Premium Web Concept Designed for High Conversions</p>
+    </div>
+  </footer>
+
+  <!-- MODAL: ITINERARY DRAWER -->
+  <div class="modal-overlay" id="itineraryModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="itineraryTitle">Tour Itinerary</h3>
+        <button class="modal-close" onclick="closeItineraryModal()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="itinerary-timeline" id="itineraryTimeline">
+          <!-- Populated Dynamically via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: GET A QUOTE FORM -->
+  <div class="modal-overlay" id="quoteModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Request a Quick Quote</h3>
+        <button class="modal-close" onclick="closeQuoteModal()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="modal-body">
+        <!-- Interactive Quote Form -->
+        <form id="quoteForm" onsubmit="handleQuoteSubmit(event)">
+          <!-- Price estimation indicator -->
+          <div class="estimate-box">
+            <span class="estimate-title">Estimated Rental Fare:</span>
+            <span class="estimate-price" id="estimatePrice">₹0.00</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label for="qName">Your Name</label>
+              <div class="input-container">
+                <i data-lucide="user"></i>
+                <input type="text" id="qName" class="form-input" placeholder="Shashank Tyagi" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="qPhone">Phone Number</label>
+              <div class="input-container">
+                <i data-lucide="phone"></i>
+                <input type="tel" id="qPhone" class="form-input" placeholder="+91 7055788999" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label for="qVehicle">Select Vehicle / Service</label>
+            <div class="input-container">
+              <i data-lucide="car"></i>
+              <select id="qVehicle" class="form-select" onchange="calculateEstimate()">
+                <option value="Volvo Luxury AC Coach">Volvo Luxury AC Coach (45 Seater)</option>
+                <option value="Maharaja Tempo Traveller">Maharaja Tempo Traveller (17 Seater)</option>
+                <option value="Toyota Innova Crysta">Toyota Innova Crysta (7 Seater SUV)</option>
+                <option value="Swift Dzire / Sedan">Swift Dzire / Sedan (4 Seater)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label for="qPickup">Pickup City</label>
+              <div class="input-container">
+                <i data-lucide="map-pin"></i>
+                <select id="qPickup" class="form-select" onchange="calculateEstimate()">
+                  <option value="Dhampur">Dhampur</option>
+                  <option value="Bijnor">Bijnor</option>
+                  <option value="Haridwar">Haridwar</option>
+                  <option value="Dehradun">Dehradun</option>
+                  <option value="Delhi NCR">Delhi NCR</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="qDest">Destination</label>
+              <div class="input-container">
+                <i data-lucide="navigation"></i>
+                <select id="qDest" class="form-select" onchange="calculateEstimate()">
+                  <option value="Kedarnath">Kedarnath (Himalayas)</option>
+                  <option value="Badrinath">Badrinath (Himalayas)</option>
+                  <option value="Jim Corbett">Jim Corbett Park</option>
+                  <option value="Rishikesh">Rishikesh Rafting</option>
+                  <option value="Nainital">Nainital Lakes</option>
+                  <option value="Delhi">Delhi City Tour</option>
+                  <option value="Jaipur">Jaipur Tour</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+            <div class="form-group">
+              <label for="qDate">Travel Date</label>
+              <div class="input-container">
+                <i data-lucide="calendar"></i>
+                <input type="date" id="qDate" class="form-input" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="qDays">Total Days</label>
+              <div class="input-container">
+                <i data-lucide="clock"></i>
+                <input type="number" id="qDays" class="form-input" min="1" max="30" value="3" oninput="calculateEstimate()" required>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            Submit Inquiry
+            <i data-lucide="send"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION SUCCESS STATE -->
+  <div class="toast-msg" id="toastMsg">
+    <i data-lucide="check-circle-2"></i>
+    <span id="toastText">Inquiry submitted successfully!</span>
+  </div>
+
+  <!-- Script for Icons & Interactive Logic -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="script.js"></script>
+</body>
+</html>
